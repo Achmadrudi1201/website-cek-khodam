@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Khodam</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            color: #00796b;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: calc(100% - 22px);
+            margin-bottom: 15px;
+            border: 1px solid #b2dfdb;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #b2dfdb;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            color: #004d40;
+        }
+        th {
+            background-color: #00796b;
+            color: white;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cek Khodam Anda</h1>
+        <p>Masukkan nama Anda untuk memeriksa khodam yang ada.</p>
+        <input type="text" id="nameInput" placeholder="Masukkan nama Anda...">
+        <button onclick="cekKhodam()">Cek Khodam</button>
+
+        <table id="resultTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Khodam</th>
+                    <th>Foto</th>
+                </tr>
+            </thead>
+            <tbody id="resultBody">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function cekKhodam() {
+            const name = document.getElementById('nameInput').value.trim();
+            if (name === "") {
+                alert("Masukkan nama Anda terlebih dahulu!");
+                return;
+            }
+
+            const khodams = [
+                { name: "Sapi", image: "img/sapi.jpeg" },
+                { name: "Kodok Zumba", image: "img/kodok zuma.jpeg" },
+                { name: "Belalang Tempur", image: "img/belalang T.jpeg" },
+                { name: "Unta Gereng", image: "img/unta.jpeg" },
+                { name: "Bayu Kakak", image: "img/bayu.jpg" }
+            ];
+
+            const randomKhodam = khodams[Math.floor(Math.random() * khodams.length)];
+
+            const resultTable = document.getElementById('resultTable');
+            const resultBody = document.getElementById('resultBody');
+            
+            resultTable.style.display = "table";
+            resultBody.innerHTML = `
+                <tr>
+                    <td>${name}</td>
+                    <td>${randomKhodam.name}</td>
+                    <td><img src="${randomKhodam.image}" alt="${randomKhodam.name}"></td>
+                </tr>
+            ` + resultBody.innerHTML; // Tambahkan baris di bagian atas
+        }
+    </script>
+</body>
+</html>
